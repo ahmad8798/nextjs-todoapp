@@ -1,4 +1,5 @@
 import { createAsyncThunk,createSlice } from "@reduxjs/toolkit";
+import {  toast } from 'react-hot-toast'
 import axios from "axios";
 
 export const getAllData = createAsyncThunk('gitusers',async()=>{
@@ -19,7 +20,11 @@ export const postData = createAsyncThunk('postusers',async(data)=>{
         const response = await axios.post('/api/todos',data)
         const results  = response
         console.log(results.data.data.userTodo,'state data for post')
+        toast.success('todo added successfully!',{
+            icon:'➕'
+        })
         return results.data.data.userTodo
+        
     }catch(err){
         return err
     }
@@ -31,6 +36,9 @@ export const updateData = createAsyncThunk('updateUsers',async({id,data})=>{
         const response = await axios.put(`/api/todos/${id}`,data)
         const results  = response
         console.log(results.data,'state data for update')
+        toast.success('todo updated succssfully!',{
+            icon:'📝'
+        })
         return results.data.data.todo
     }catch(err){
         return err
@@ -42,6 +50,9 @@ export const deleteTodo = createAsyncThunk('deleteUsers',async(id)=>{
         const response = await axios.delete(`/api/todos/${id}`)
         const results  = response
         console.log(results,'state data for update')
+        toast.success('todo deleted successfully!',{
+            icon:'🗑️'
+        })
         return results.data.data.todo
     }catch(err){
         return err

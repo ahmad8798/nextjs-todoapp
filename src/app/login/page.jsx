@@ -74,9 +74,6 @@ import { getAllData } from '../globalstore/features/auth/todoSlice'
 
       </div>
     </form>
-    <button onClick={()=>dispatch(getAllData())}>
-            dispatch
-        </button>
     <p className="mt-4 text-sm text-gray-600 text-center">
       Don't have an account? <a href="#" className="text-pink-500 hover:underline">Sign Up</a>
     </p>
