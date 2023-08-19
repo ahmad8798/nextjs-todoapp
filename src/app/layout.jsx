@@ -5,9 +5,6 @@ import { Toaster } from 'react-hot-toast'
 import Navbar2 from './components/Navbar2'
 import { Provider } from 'react-redux'
 import { store } from './globalstore/store'
-import { useState } from 'react'
-
-
 const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: 'Create Next App',
@@ -15,24 +12,12 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-
-
   return (
     <html lang="en">
       <body className={inter.className}>
 {/*         
               <Navbar/> */}
               <Provider store={store}>
-            
                   <Navbar2/>
                   <Toaster/>
                   {children}

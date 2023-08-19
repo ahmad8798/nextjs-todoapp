@@ -2,14 +2,23 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import TodoCard from '../components/TodoCard';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ModalComponent from '../components/Modal';
+import { getAllData } from '../globalstore/features/auth/todoSlice';
+
 const TodoList = () => {
+  const dispatch = useDispatch()
   const isLogin = useSelector((state)=>state)
+  const CurrentTodos = useSelector((state)=>state.app.posts)
   console.log(isLogin,'this is redux store value from todos')
+  console.log(CurrentTodos,'this is redux store todos from todos page')
   const [todos,setTodos] = useState([])
   const [selectedTask, setSelectedTask] = useState(null);
   
+
+
+
+
   async function getTodos(){
     try{
       const todos = await axios.get('/api/todos')
@@ -22,15 +31,16 @@ const TodoList = () => {
   }
   useEffect(()=>{
 
-  
+    dispatch(getAllData())
     getTodos()
   },[])
   
   return (
     <div className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 min-h-screen">
     <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4">
-      {todos.map((task, index) => (
-        <TodoCard key={index} task={task} custom={<ModalComponent/>} fetchTodos={getTodos} />
+      {CurrentTodos.map((task, index) => (
+       
+        <TodoCard key={index} task={task} custom={<ModalComponent/>}/>
       ))}
     </div>
     </div>

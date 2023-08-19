@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import { login } from '../globalstore/features/auth/authslice'
 import { useDispatch } from 'react-redux'
 import ModalComponent from '../components/Modal'
+import { getAllData } from '../globalstore/features/auth/todoSlice'
 
   export function page() {
     const dispatch = useDispatch()
@@ -70,9 +71,12 @@ import ModalComponent from '../components/Modal'
         <button onClick={(e) => { e.preventDefault(); toastify()}} className="bg-pink-500 text-white py-3 px-6 rounded-lg hover:bg-pink-600 transition duration-300">
           Log In
         </button>
-        
+
       </div>
     </form>
+    <button onClick={()=>dispatch(getAllData())}>
+            dispatch
+        </button>
     <p className="mt-4 text-sm text-gray-600 text-center">
       Don't have an account? <a href="#" className="text-pink-500 hover:underline">Sign Up</a>
     </p>

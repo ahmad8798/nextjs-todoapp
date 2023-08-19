@@ -1,26 +1,21 @@
 'use client'
-import axios from 'axios';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Modal from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
-
+import { deleteTodo } from '../globalstore/features/auth/todoSlice';
 
 
 
 const ModalComponent = ({todoId}) => {
+    const dispatch = useDispatch()
   const [open, setOpen] = useState(false);
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
 
-  const deleteTodo = async()=>{
-    try{
-        const deletedTodo = axios.delete(`/api/todos/${todoId}`)
-        console.log(deleteTodo,'this is delted todo')
+  const deleteCurrentTodo = async()=>{
+        dispatch(deleteTodo(todoId))
         onCloseModal()
-        window.location.reload()
-    }catch(error){
-        console.log(error,'this is errror occured during deletion in todo')
-    }
   }
 
   return (
@@ -56,7 +51,7 @@ const ModalComponent = ({todoId}) => {
               Cancel
             </button>
             <button
-              onClick={deleteTodo}
+              onClick={deleteCurrentTodo}
               className="px-4 py-2 text-white bg-red-500 hover:bg-red-700 rounded focus:outline-none focus:shadow-outline"
             >
               Delete

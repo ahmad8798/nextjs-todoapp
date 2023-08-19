@@ -2,29 +2,39 @@
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
+import { getAllData, postData } from '../globalstore/features/auth/todoSlice';
 
 const CreateTodoForm = () => {
+  const dispatch = useDispatch()
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const router = useRouter()
   const handleSubmit = async (e) => {
     e.preventDefault();
+     const todo = {title,description}
+     dispatch(postData(todo))
+     router.push('/todos')
+    // try {
 
-    try {
-      const response = await axios.post('/api/todos', { title, description });
-      console.log('Todo created:', response.data);
-      router.push('/todos')
-      // You can perform any actions you want after creating the todo
-    } catch (error) {
-      console.error('Error creating todo:', error);
-    }
+    //   // const response = await axios.post('/api/todos', { title, description });
+    //   
+    //   // dispatch(getAllData(getAllData))
+    //   console.log('Todo created:', response.data);
+    //   
+    //   // You can perform any actions you want after creating the todo
+    // } catch (error) {
+    //   console.error('Error creating todo:', error);
+    // }
+
+
   };
 
   useEffect(()=>{
 
   },[])
   return (
-    <div className="flex justify-center h-screen items-center">
+    <div className="flex justify-center h-screen items-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
       <div className="bg-white p-8 rounded shadow-md w-full sm:w-96">
         <h1 className="text-2xl font-semibold mb-6 text-center">Create Todo</h1>
 

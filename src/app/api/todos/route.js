@@ -43,11 +43,11 @@ export async function GET(request){
         console.log(user,'this is user id by get request')
         const todos = await Todo.find({user})
         return NextResponse.json({
-            message:'working fine',
+            message:'success',
             data:{
                 todos
             }
-        })
+        },{status:200})
     }catch(error){
         return NextResponse.json({
           message: error.message
