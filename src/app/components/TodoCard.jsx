@@ -7,17 +7,16 @@ import { useState } from 'react'
 import axios from 'axios';
 import { mutate } from 'swr';
 import ModalComponent from './Modal';
- const TodoCard = ({ task ,custom,fetchTodos}) => {
+ const TodoCard = ({ task}) => {
     const navigate = useRouter()
-    const [open, setOpen] = useState(false);
 
   const onOpenModal = () => setOpen(true);
-  const onCloseModal = () => setOpen(false);
 
-  const handleDelete = () => {
-    onOpenModal();
+
+  // const handleDelete = () => {
+  //   onOpenModal();
     
-  };
+  // };
 
 //   const deleteTodo = async()=>{
 //          try{
@@ -46,7 +45,7 @@ import ModalComponent from './Modal';
             edit
           </button>
           <button
-            onClick={handleDelete}
+           
             className="text-red-600 hover:text-red-800 transition"
           >
             <ModalComponent  todoId={task._id}/>

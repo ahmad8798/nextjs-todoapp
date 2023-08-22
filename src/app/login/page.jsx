@@ -1,15 +1,17 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState ,useEffect} from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { ToastBar, Toaster, toast } from 'react-hot-toast'
 import { useSelector } from 'react-redux'
 import { login } from '../globalstore/features/auth/authslice'
 import { useDispatch } from 'react-redux'
-import ModalComponent from '../components/Modal'
-import { getAllData } from '../globalstore/features/auth/todoSlice'
-
+import Cookies from 'js-cookie'
+import Router from 'next/router'
   export function page() {
+    useEffect(() => {
+      Cookies.set('login', 'false', { expires: 7 });
+    }, []);
     const dispatch = useDispatch()
   const router = useRouter()
   const [user, setUser] = useState({
@@ -75,7 +77,7 @@ import { getAllData } from '../globalstore/features/auth/todoSlice'
       </div>
     </form>
     <p className="mt-4 text-sm text-gray-600 text-center">
-      Don't have an account? <a href="#" className="text-pink-500 hover:underline">Sign Up</a>
+      Don't have an account? <a onClick={()=>router.push('/signup')} href="#" className="text-pink-500 hover:underline">Sign Up</a>
     </p>
   </div>
 </div>

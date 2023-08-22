@@ -47,9 +47,16 @@ const Navbar2 = () => {
                   Logout
                 </button>
               )}
-              <a href="#" className="text-black-300 hover:text-white px-3 py-2 rounded-md">About</a>
-              <a href="#" className="text-black-300 hover:text-white px-3 py-2 rounded-md">Services</a>
-              <a href="#" className="text-black-300 hover:text-white px-3 py-2 rounded-md">Contact</a>
+
+      {isLoginIsThere && (
+                <button
+                  onClick= {()=>Router.push('/createtodo')}
+                  className="text-black-300 hover:text-white px-3 py-2 rounded-md"
+                >
+                  Add Todo
+                </button>
+              )}
+
             </div>
           </div>
           <div className="-mr-2 flex md:hidden">
@@ -77,9 +84,10 @@ const Navbar2 = () => {
               Logout
             </button>
           )}
-          <a href="#" className="text-black-300 hover:text-white block px-3 py-2 rounded-md">About</a>
-          <a href="#" className="text-black-300 hover:text-white block px-3 py-2 rounded-md">Services</a>
-          <a href="#" className="text-black-300 hover:text-white block px-3 py-2 rounded-md">Contact</a>
+
+          
+      {isLoginIsThere && <a onClick= {()=>Router.push('/createtodo')} href="#" className="text-black-300 hover:text-white block px-3 py-2 rounded-md">add todo</a>}
+          
         </div>
       </div>
     </nav>

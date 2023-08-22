@@ -5,6 +5,8 @@ import { Toaster } from 'react-hot-toast'
 import Navbar2 from './components/Navbar2'
 import { Provider } from 'react-redux'
 import { store } from './globalstore/store'
+
+
 const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: 'Create Next App',
