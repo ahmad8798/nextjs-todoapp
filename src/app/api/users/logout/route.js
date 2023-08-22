@@ -5,7 +5,7 @@ export async function GET(){
         const response =  NextResponse.json({
             message:"loggedout successfully!"
         },{status:200})
-        response.cookies.set('authtoken','',{expires:new Date(0)})
+        response.cookies.delete('authtoken')
         response.cookies.set('login',false)
         return response
     }catch(err){
