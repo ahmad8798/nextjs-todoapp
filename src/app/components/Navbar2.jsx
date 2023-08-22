@@ -41,7 +41,7 @@ const Navbar2 = () => {
             <div className="ml-10 flex items-baseline space-x-4">
               {isLoginIsThere && (
                 <button
-                  onClick={handleLogout}
+                  onClick={()=>handleLogout()}
                   className="text-black-300 hover:text-white px-3 py-2 rounded-md"
                 >
                   Logout
