@@ -18,10 +18,9 @@ const Navbar2 = () => {
     try {
       const response = await axios.get('/api/users/logout');
       // Use the `as` prop to specify the href without triggering client-side navigation
-      Router.push('/login', undefined, { shallow: true });
-      console.log(response);
+      Router.push('/login');
+      console.log(response,"this is the ressponse from navigation bar");
       dispatch(logout());
-      setIsLogin(false);
 
     } catch (error) {
       console.log(error);
