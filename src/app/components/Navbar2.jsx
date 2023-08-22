@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { logout } from '../globalstore/features/auth/authslice';
 import { useDispatch, useSelector } from 'react-redux';
-
+import Link from 'next/link';
 const Navbar2 = () => {
     const isLoginIsThere = useSelector((state)=>state.auth)
     const [isOpen, setIsOpen] = useState(false);
@@ -17,9 +17,10 @@ const Navbar2 = () => {
   const handleLogout = async () => {
     try {
       const response = await axios.get('/api/users/logout');
-      Router.push('/login');
+      // Use the `as` prop to specify the href without triggering client-side navigation
+      Router.push('/login', undefined, { shallow: true });
       console.log(response);
-      dispatch(logout())
+      dispatch(logout());
       setIsLogin(false);
 
     } catch (error) {
@@ -49,12 +50,11 @@ const Navbar2 = () => {
               )}
 
       {isLoginIsThere && (
-                <button
-                  onClick= {()=>Router.push('/createtodo')}
-                  className="text-black-300 hover:text-white px-3 py-2 rounded-md"
-                >
-                  Add Todo
-                </button>
+  <Link  href="/createtodo" className="text-black-300 hover:text-white px-3 py-2 rounded-md">
+
+   Add Todo
+
+</Link>
               )}
 
             </div>
@@ -86,7 +86,11 @@ const Navbar2 = () => {
           )}
 
           
-      {isLoginIsThere && <a onClick= {()=>Router.push('/createtodo')} href="#" className="text-black-300 hover:text-white block px-3 py-2 rounded-md">add todo</a>}
+      {isLoginIsThere &&   <Link  href="/createtodo" className="text-black-300 hover:text-white px-3 py-2 rounded-md">
+
+Add Todo
+
+</Link>}
           
         </div>
       </div>
