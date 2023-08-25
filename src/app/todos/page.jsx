@@ -8,9 +8,7 @@ import { getAllData } from '../globalstore/features/auth/todoSlice';
 
 const TodoList = () => {
   const dispatch = useDispatch()
-  const isLogin = useSelector((state)=>state)
   const CurrentTodos = useSelector((state)=>state.app.posts)
-  console.log(isLogin,'this is redux store value from todos')
   console.log(CurrentTodos,'this is redux store todos from todos page')
   async function getTodos(){
     try{

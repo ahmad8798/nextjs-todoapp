@@ -2,12 +2,10 @@
 import React, { useState ,useEffect} from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
-import { ToastBar, Toaster, toast } from 'react-hot-toast'
-import { useSelector } from 'react-redux'
-import { login } from '../globalstore/features/auth/authslice'
+import {  toast } from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
 import Cookies from 'js-cookie'
-import Router from 'next/router'
+
   export function page() {
     useEffect(() => {
       Cookies.set('login', 'false', { expires: 7 });
@@ -18,8 +16,6 @@ import Router from 'next/router'
     email: '', password: ''
   })
 
-  const isLogin = useSelector((state)=>state)
-  console.log(isLogin,'this is redux store value from login')
   const doLogin = async () => {
     try {
       const data = await axios.post('/api/users/login', user)
