@@ -2,11 +2,9 @@
 import {useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import { logout } from '../globalstore/features/auth/authslice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import Link from 'next/link';
 const Navbar2 = () => {
-    const isLoginIsThere = useSelector((state)=>state.auth)
     const [isOpen, setIsOpen] = useState(false);
   const Router = useRouter();
     const dispatch = useDispatch()
@@ -17,8 +15,6 @@ const Navbar2 = () => {
   const handleLogout = async () => {
     try {
       const response = await axios.get('/api/users/logout');
-      console.log(response,"this is the ressponse from navigation bar");
-      dispatch(logout());
       Router.push('/login')
     } catch (error) {
       console.log(error);
@@ -37,22 +33,19 @@ const Navbar2 = () => {
           </div>
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
-              {isLoginIsThere && (
-                <button
+            <button
                   onClick={()=>handleLogout()}
                   className="text-black-300 hover:text-white px-3 py-2 rounded-md"
                 >
                   Logout
-                </button>
-              )}
+            </button>
 
-      {isLoginIsThere && (
-  <Link  href="/createtodo" className="text-black-300 hover:text-white px-3 py-2 rounded-md">
+<Link  href="/createtodo" className="text-black-300 hover:text-white px-3 py-2 rounded-md">
 
    Add Todo
 
 </Link>
-              )}
+            
 
             </div>
           </div>
@@ -73,21 +66,19 @@ const Navbar2 = () => {
       </div>
       <div className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          {isLoginIsThere&& (
             <button
               onClick={handleLogout}
               className="text-black-300 hover:text-white px-3 py-2 rounded-md"
             >
               Logout
             </button>
-          )}
 
           
-      {isLoginIsThere &&   <Link  href="/createtodo" className="text-black-300 hover:text-white px-3 py-2 rounded-md">
+  <Link  href="/createtodo" className="text-black-300 hover:text-white px-3 py-2 rounded-md">
 
 Add Todo
 
-</Link>}
+</Link>
           
         </div>
       </div>

@@ -24,10 +24,8 @@ import Router from 'next/router'
     try {
       const data = await axios.post('/api/users/login', user)
       console.log(data.data)
-      dispatch(login())
       router.push('/todos')
       return data
-
     } catch (err) {
       console.log(err)
       throw new Error(err.response.data.message)

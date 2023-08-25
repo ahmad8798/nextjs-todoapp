@@ -1,6 +1,6 @@
 'use client'
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import TodoCard from '../components/TodoCard';
 import { useDispatch, useSelector } from 'react-redux';
 import ModalComponent from '../components/Modal';
@@ -12,13 +12,6 @@ const TodoList = () => {
   const CurrentTodos = useSelector((state)=>state.app.posts)
   console.log(isLogin,'this is redux store value from todos')
   console.log(CurrentTodos,'this is redux store todos from todos page')
-  const [todos,setTodos] = useState([])
-  const [selectedTask, setSelectedTask] = useState(null);
-  
-
-
-
-
   async function getTodos(){
     try{
       const todos = await axios.get('/api/todos')
