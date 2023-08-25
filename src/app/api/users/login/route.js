@@ -22,11 +22,10 @@ export async function POST(request){
                 const expirationDate = new Date();
                 expirationDate.setDate(expirationDate.getDate() + 7);
 
-                response.cookies.set("authtoken",token,{
-                    httpOnly:true,
-                    expires:expirationDate,
-                    secure:true
+                response.cookies.set("authtoken", token, {
+                    httpOnly: true,        
                 })
+                
                 response.cookies.set("login",true,{
                     expires:expirationDate,
                 })

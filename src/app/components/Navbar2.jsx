@@ -19,7 +19,7 @@ const Navbar2 = () => {
       const response = await axios.get('/api/users/logout');
       console.log(response,"this is the ressponse from navigation bar");
       dispatch(logout());
-
+      Router.push('/login')
     } catch (error) {
       console.log(error);
     }
